@@ -1,0 +1,117 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class ArithmeticGame {
+    private static int score = 0;
+    private static Random random = new Random();
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        System.out.println("Welcome to the Arithmetic Game!");
+        System.out.print("Please enter your name: ");
+        String name = scanner.nextLine();
+
+        boolean continuePlaying = true;
+
+        while (continuePlaying) {
+            System.out.println("Hello " + name + "! What type of arithmetic operation would you like to practice?");
+            System.out.println("1. Addition");
+            System.out.println("2. Subtraction");
+            System.out.println("3. Multiplication");
+            System.out.println("4. Division");
+            System.out.print("Enter your choice (1-4): ");
+            int choice = scanner.nextInt();
+
+            if (choice == 1) {
+                playAddition();
+            } else if (choice == 2) {
+                playSubtraction();
+            } else if (choice == 3) {
+                playMultiplication();
+            } else if (choice == 4) {
+                playDivision();
+            } else {
+                System.out.println("Invalid choice. Please select a number between 1 and 4.");
+            }
+
+            System.out.print("Do you want to keep playing? (yes/no): ");
+            scanner.nextLine(); // Consume newline left-over
+            String response = scanner.nextLine();
+            if (!response.equalsIgnoreCase("yes")) {
+                continuePlaying = false;
+            }
+        }
+
+        System.out.println("Thank you for playing! Your final score is: " + score);
+    }
+
+    private static void playAddition() {
+        int num1 = random.nextInt(201) - 100;
+        int num2 = random.nextInt(201) - 100;
+        int correctAnswer = num1 + num2;
+
+        System.out.print("What is " + num1 + " + " + num2 + "? ");
+        int userAnswer = scanner.nextInt();
+
+        if (userAnswer == correctAnswer) {
+            System.out.println("Correct!");
+            score++;
+        } else {
+            System.out.println("Incorrect. The correct answer is " + correctAnswer);
+        }
+    }
+
+    private static void playSubtraction() {
+        int num1 = random.nextInt(201) - 100;
+        int num2 = random.nextInt(201) - 100;
+        int correctAnswer = num1 - num2;
+
+        System.out.print("What is " + num1 + " - " + num2 + "? ");
+        int userAnswer = scanner.nextInt();
+
+        if (userAnswer == correctAnswer) {
+            System.out.println("Correct!");
+            score++;
+        } else {
+            System.out.println("Incorrect. The correct answer is " + correctAnswer);
+        }
+    }
+
+    private static void playMultiplication() {
+        int num1 = random.nextInt(201) - 100;
+        int num2 = random.nextInt(201) - 100;
+        int correctAnswer = num1 * num2;
+
+        System.out.print("What is " + num1 + " * " + num2 + "? ");
+        int userAnswer = scanner.nextInt();
+
+        if (userAnswer == correctAnswer) {
+            System.out.println("Correct!");
+            score++;
+        } else {
+            System.out.println("Incorrect. The correct answer is " + correctAnswer);
+        }
+    }
+
+    private static void playDivision() {
+        int num1 = random.nextInt(201) - 100;
+        int num2 = random.nextInt(201) - 100;
+
+        while (num2 == 0) {
+            num2 = random.nextInt(201) - 100; // Ensure denominator is not zero
+        }
+
+        int correctAnswer = num1 / num2;
+
+        System.out.print("What is " + num1 + " / " + num2 + "? ");
+        int userAnswer = scanner.nextInt();
+
+        if (userAnswer == correctAnswer) {
+            System.out.println("Correct!");
+            score++;
+        } else {
+            System.out.println("Incorrect. The correct answer is " + correctAnswer);
+        }
+    }
+}
+
